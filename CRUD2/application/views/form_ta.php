@@ -1,0 +1,195 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+
+    <meta charset="utf-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <meta name="description" content="">
+    <meta name="author" content="">
+
+    <title>SB Admin 2 - Bootstrap Admin Theme</title>
+
+    <!-- Bootstrap Core CSS -->
+    <link href="<?php echo base_url();?>resource/bower_components/bootstrap/dist/css/bootstrap.min.css" rel="stylesheet">
+
+    <!-- MetisMenu CSS -->
+    <link href="<?php echo base_url();?>resource/bower_components/metisMenu/dist/metisMenu.min.css" rel="stylesheet">
+
+    <!-- Custom CSS -->
+    <link href="<?php echo base_url();?>resource/dist/css/sb-admin-2.css" rel="stylesheet">
+
+    <!-- Custom Fonts -->
+    <link href="<?php echo base_url();?>resource/bower_components/font-awesome/css/font-awesome.min.css" rel="stylesheet" type="text/css">
+
+    <!-- HTML5 Shim and Respond.js IE8 support of HTML5 elements and media queries -->
+    <!-- WARNING: Respond.js doesn't work if you view the page via file:// -->
+    <!--[if lt IE 9]>
+        <script src="https://oss.maxcdn.com/libs/html5shiv/3.7.0/html5shiv.js"></script>
+        <script src="https://oss.maxcdn.com/libs/respond.js/1.4.2/respond.min.js"></script>
+    <![endif]-->
+	
+    <!-- jQuery -->
+    <script src="<?php echo base_url();?>resource/bower_components/jquery/dist/jquery.min.js"></script>
+
+    <!-- Bootstrap Core JavaScript -->
+    <script src="<?php echo base_url();?>resource/bower_components/bootstrap/dist/js/bootstrap.min.js"></script>
+
+    <!-- Metis Menu Plugin JavaScript -->
+    <script src="<?php echo base_url();?>resource/bower_components/metisMenu/dist/metisMenu.min.js"></script>
+
+    <!-- Custom Theme JavaScript -->
+    <script src="<?php echo base_url();?>resource/dist/js/sb-admin-2.js"></script>
+	
+	<style>
+		.button{
+			background-color:gray;
+			color:white;
+		}
+		.button:hover{
+			background-color:white;
+			color:black;
+		}
+	</style>
+
+</head>
+
+<body>
+
+    <div id="wrapper">
+
+        <!-- Navigation -->
+        <nav class="navbar navbar-default navbar-static-top" role="navigation" style="margin-bottom: 0">
+            <div class="navbar-header">
+                <button type="button" class="navbar-toggle" data-toggle="collapse" data-target=".navbar-collapse">
+                    <span class="sr-only">Toggle navigation</span>
+                    <span class="icon-bar"></span>
+                    <span class="icon-bar"></span>
+                    <span class="icon-bar"></span>
+                </button>
+                <a class="navbar-brand">SISTEM PENYIMPANAN MAKALAH PKL dan TA</a>
+            </div>
+            <!-- /.navbar-header -->
+
+            <div class="navbar-default sidebar" role="navigation">
+                <div class="sidebar-nav navbar-collapse">
+                    <ul class="nav" id="side-menu">
+                        <li>
+                            <a href="#" ><i class="fa fa-table fa-fw"></i> Tables<span class="fa arrow"></span></a>
+                            <ul class="nav nav-second-level">
+                                <li>
+                                    <a href="<?php echo base_url()."index.php/CRUD/tabel_ta"?>">Tabel Makalah TA</a>
+                                </li>
+                            </ul>
+                            <!-- /.nav-second-level -->
+                        </li>
+                        <li>
+                            <a href="#" ><i class="fa fa-edit fa-fw"></i> Forms <span class="fa arrow"></span></a>
+                            <ul class="nav nav-second-level">
+                                <li>
+                                    <a href="<?php echo base_url()."index.php/CRUD/form_ta"?>">Form TA</a>
+                                </li>
+                            </ul>
+                            <!-- /.nav-second-level -->
+                        </li>
+                    </ul>
+                </div>
+                <!-- /.sidebar-collapse -->
+            </div>
+            <!-- /.navbar-static-side -->
+        </nav>
+
+        <div id="page-wrapper">
+            <div class="row">
+                <div class="col-lg-12">
+                    <h1 class="page-header">Form Makalah Tugas Akhir</h1>
+                </div>
+                <!-- /.col-lg-12 -->
+            </div>
+            <!-- /.row -->
+			<div class="panel panel-default">
+				<div class="row">
+					<form method="POST" action="<?php echo base_url();?>index.php/CRUD/submitTA" enctype="multipart/form-data">
+						<div class="col-lg-6">
+							<div class="panel panel-default">
+								<div class="panel-heading">
+									<p style="font-size:28px">Form Data Mahasiswa</p>
+								</div>
+								<div class="panel-body">
+									<div class="form-group">
+										<label>NIM</label>
+										<input class="form-control" type="number" name="nim" value="" placeholder="NIM Mahasiswa" required autofocus>
+									</div>
+									<div class="form-group">
+										<label>NAMA LENGKAP</label>
+										<input class="form-control" type="text" name="name" value="" placeholder="Masukkan Nama Lengkap Mahasiswa">
+									</div>						
+									<div class="form-group">
+										<label>ANGKATAN</label>
+										<select class="form-control" name="angkatan">
+											<option value=""> -- Masukkan Tahun Angkatan Mahasiswa -- </option>
+										<?php for($angkatan=2004; $angkatan<=date('Y'); $angkatan++) {?>
+											<option value="<?php echo $angkatan;?>">
+												<?php echo $angkatan;?>
+											</option>
+										<?php }?>
+										</select>
+									</div>
+									<div class="form-group">
+										<label>Unggah Foto</label><?php echo $error;?>
+										<input type="file" multiple name="foto[]">
+									</div>
+								</div>
+								<!-- /.panel-body -->
+							</div>
+							<!-- /.panel -->
+						</div>
+						<!-- /.col-lg-6 -->
+						<div class="col-lg-6">
+							<div class="panel panel-default">
+								<div class="panel-heading">
+									<p style="font-size:28px">Form Data Makalah</p>
+								</div>
+								<div class="panel-body">
+									<div class="form-group">
+										<label>Judul Makalah</label>
+										<textarea class="form-control" name="judul" rows="3" required> </textarea>
+									</div>
+									<div class="form-group">
+										<label>Unggah File</label><?php echo $error;?>
+										<input type="file" multiple name="file[]">
+									</div>
+									<div class="form-group">
+										<label>Dosen Pembimbing</label>
+										<select class="form-control" name="nip">
+											<option value="none"> -- Pilih Dosen Pembimbing -- </option>
+										<?php foreach ($dosen as $row){?>
+											<option value="<?php echo $row->nip;?>"> <?php echo $row->nama;?> </option>
+										<?php }?>
+										</select>
+									</div>
+								</div>
+								<!-- /.panel-body -->
+							</div>
+							<!-- /.panel -->
+						</div>
+						<!-- /.col-lg-6 -->
+						<div style="text-align:center;" class="panel-body col-lg-12">
+								<button type="submit" name="submit" class="btn btn-default button">Submit Button</button>
+								<button type="reset" class="btn btn-default button">Reset Button</button>
+						</div>
+					</form>
+				</div>
+				<!-- /.row -->
+			</div>
+			<!--panel panel-default-->
+        </div>
+        <!-- /#page-wrapper -->
+
+    </div>
+    <!-- /#wrapper -->
+
+</body>
+
+</html>
