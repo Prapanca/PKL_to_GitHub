@@ -9,7 +9,7 @@
     <meta name="description" content="">
     <meta name="author" content="">
 
-    <title>SB Admin 2 - Bootstrap Admin Theme</title>
+    <title>Detail Makalah TA</title>
 
     <!-- Bootstrap Core CSS -->
     <link href="<?php echo base_url();?>resource/bower_components/bootstrap/dist/css/bootstrap.min.css" rel="stylesheet">
@@ -46,7 +46,7 @@
 		function confirm_delete(nim){
 			var res = confirm ('Apakah anda yakin menghapus data ini ?');
 			if(res==true){
-				window.location="<?php echo base_url()?>index.php/CRUD/deleteTA/"+nim;
+				window.location="<?php echo base_url()?>index.php/TA_Controllers/deleteTA/"+nim;
 			}
 		}
 	</script>
@@ -94,23 +94,47 @@
                 <a class="navbar-brand">SISTEM PENYIMPANAN MAKALAH PKL dan TA</a>
             </div>
             <!-- /.navbar-header -->
+			
+            <ul class="nav navbar-top-links navbar-right">
+                <li class="dropdown">
+                    <a class="dropdown-toggle" data-toggle="dropdown" href="#">
+                        <i class="fa fa-user fa-fw"></i> <?php echo $nama;?>  <i class="fa fa-caret-down"></i>
+                    </a>
+                    <ul class="dropdown-menu dropdown-user">
+                        <li><a href="#"><i class="fa fa-user fa-fw"></i> User Profile</a>
+                        </li>
+                        <li><a href="#"><i class="fa fa-gear fa-fw"></i> Settings</a>
+                        </li>
+                        <li class="divider"></li>
+                        <li><a href="<?php echo $linkKeluar;?>"><i class="fa fa-sign-out fa-fw"></i> Logout </a>
+                        </li>
+                    </ul>
+                    <!-- /.dropdown-user -->
+                </li>
+                <!-- /.dropdown -->
+            </ul>
+            <!-- /.navbar-top-links -->
 
             <div class="navbar-default sidebar" role="navigation">
                 <div class="sidebar-nav navbar-collapse">
                     <ul class="nav" id="side-menu">
-                        <li>
-                            <a href="#"><i class="fa fa-table fa-fw"></i> Tables <span class="fa arrow"></a>
-							<ul class="nav nav-second-level">
-                                <li class="active">
-                                    <a href="<?php echo base_url()."index.php/CRUD"?>">Tabel Makalah TA</a>
-                                </li>
-							</ul>
+						<li>
+                            <a href="<?php echo base_url()."index.php/Aktifitas"?>"><i class="fa fa-clock-o fa-fw"></i> Aktifitas</a>
                         </li>
                         <li>
-                            <a href="#"><i class="fa fa-edit fa-fw"></i> Forms <span class="fa arrow"></a>
+                            <a href="#" ><i class="fa fa-table fa-fw"></i> Tables<span class="fa arrow"></span></a>
                             <ul class="nav nav-second-level">
                                 <li>
-                                    <a href="<?php echo base_url()."index.php/CRUD/form_ta"?>">Form TA</a>
+                                    <a href="<?php echo base_url()."index.php/TA_Controllers/tabel_ta"?>">Tabel Makalah TA</a>
+                                </li>
+                            </ul>
+                            <!-- /.nav-second-level -->
+                        </li>
+                        <li>
+                            <a href="#" ><i class="fa fa-edit fa-fw"></i> Forms <span class="fa arrow"></span></a>
+                            <ul class="nav nav-second-level">
+                                <li>
+                                    <a href="<?php echo base_url()."index.php/TA_Controllers/form_ta"?>">Form TA</a>
                                 </li>
                             </ul>
                             <!-- /.nav-second-level -->
@@ -139,7 +163,7 @@
 							<div class="panel-body">
 								<div class="edit">
 									<ul>
-										<a href="<?php base_url();?>../../CRUD/editTA/<?php echo $row->nim;?>"
+										<a href="<?php base_url();?>../../TA_Controllers/editTA/<?php echo $row->nim;?>"
 											style="border-right: 1px solid black; padding-right:12px;">Edit</a>
 										<a href="javascript:;" onclick="confirm_delete(<?php echo $row->nim;?>)" style="padding-left:7px;">Delete</a>
 									</ul>

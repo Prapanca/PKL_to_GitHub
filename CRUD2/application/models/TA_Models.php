@@ -1,5 +1,5 @@
 <?php
-	class CRUD_Model extends CI_Model{
+	class TA_Models extends CI_Model{
 		function __construct(){
 			parent::__construct();
 			$this->load->database();
@@ -28,6 +28,10 @@
 				'judul' => $this->input->post('judul'),
 			);
 			$this->db->insert('makalah_ta',$form);
+			
+			//insrt aktifitas
+			$data = array('id_admin'=>1, 'aksi'=>'menambahkan dokumen TA', 'tujuan'=>0);
+			$this->db->insert('aktifitas',$data);
 			
 			$form2 = array(
 				'nim' => $this->input->post('nim'),
