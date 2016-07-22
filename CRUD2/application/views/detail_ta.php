@@ -118,12 +118,17 @@
             <div class="navbar-default sidebar" role="navigation">
                 <div class="sidebar-nav navbar-collapse">
                     <ul class="nav" id="side-menu">
+						<?php if($this->session->userdata('login')=='kajur'){ ?>
 						<li>
                             <a href="<?php echo base_url()."index.php/Aktifitas"?>"><i class="fa fa-clock-o fa-fw"></i> Aktifitas</a>
                         </li>
+						<?php } ?>
                         <li>
                             <a href="#" ><i class="fa fa-table fa-fw"></i> Tables<span class="fa arrow"></span></a>
                             <ul class="nav nav-second-level">
+                                <li>
+                                    <a href="<?php echo base_url()."index.php/PKL_Controllers/tabel_pkl"?>">Tabel Laporan PKL</a>
+                                </li>
                                 <li>
                                     <a href="<?php echo base_url()."index.php/TA_Controllers/tabel_ta"?>">Tabel Makalah TA</a>
                                 </li>
@@ -133,6 +138,9 @@
                         <li>
                             <a href="#" ><i class="fa fa-edit fa-fw"></i> Forms <span class="fa arrow"></span></a>
                             <ul class="nav nav-second-level">
+                                <li>
+                                    <a href="<?php echo base_url()."index.php/PKL_Controllers/form_pkl"?>">Form PKL</a>
+                                </li>
                                 <li>
                                     <a href="<?php echo base_url()."index.php/TA_Controllers/form_ta"?>">Form TA</a>
                                 </li>
@@ -170,7 +178,7 @@
 								</div>
 								<!-- /.edit-->
 								<div class="foto">
-									<img src="<?php echo base_url().'/uploads/'.$row->foto;?>">
+									<img src="<?php echo base_url().'/uploads/'.$row->nim.'/'.$row->foto;?>">
 								</div>
 								<!-- /.foto-->
 								<table>
@@ -210,17 +218,17 @@
 										<td>
 											<li><a href="#"><?php echo $row->doc;?></a></li>
 											<li><a href="#"><?php echo $row->pdf;?></a></li>
-											<li><a href="#">Microsoft Power Point</a></li>
-											<li><a href="#">Source Code</a></li>
-											<li><a href="#">Artikel Ilmiah</a></li>
-											<li><a href="#">Lampiran</a></li>
+											<li><a href="#"><?php echo $row->ppt;?></a></li>
+											<li><a href="#"><?php echo $row->source_code;?></a></li>
+											<li><a href="#"><?php echo $row->artikel_ilmiah;?></a></li>
+											<li><a href="#"><?php echo $row->lampiran;?></a></li>
 										</td>
 									</tr>
 								</table>
 								<!-- /.table-->
 								
 								<div class="pdf">
-									<object width="100%" height="1150px" type="application/pdf" data="<?php echo base_url().'/uploads/'.$row->pdf;?>" id="pdf_content">
+									<object width="100%" height="1150px" type="application/pdf" data="<?php echo base_url().'/uploads/'.$row->nim.'/'.$row->pdf;?>" id="pdf_content">
 										<p>Insert your error message here, if the PDF cannot be displayed.</p>
 									</object>
 								</div>

@@ -17,9 +17,14 @@
 			}
 			if($this->aktor->setAktor($this->input->post('username'),$this->input->post('password')))
 			{
-				$data = array('id_admin'=>$this->aktor->getNama(), 'aksi'=>'Masuk dari Sistem Penyimpanan Laporann PKL dan Makalah TA', 'tujuan'=>0);
+				$data = array('id_admin'=>1, 'aksi'=>'Masuk dari Sistem Penyimpanan Laporann PKL dan Makalah TA', 'tujuan'=>0);
 				$this->db->insert('aktifitas',$data);
-				redirect("/Aktifitas");
+				if($this->session->userdata('login')=='kajur'){
+					redirect("/Aktifitas");
+				}
+				else{
+					redirect('/TA_Controllers/tabel_ta');
+				}
 			}
 			else{
 				redirect("/Login");

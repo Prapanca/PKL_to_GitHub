@@ -9,7 +9,7 @@
     <meta name="description" content="">
     <meta name="author" content="">
 
-    <title>Tabel Makalah TA</title>
+    <title>Tabel Laporan PKL</title>
 
     <!-- Bootstrap Core CSS -->
     <link href="<?php echo base_url();?>resource/bower_components/bootstrap/dist/css/bootstrap.min.css" rel="stylesheet">
@@ -142,7 +142,7 @@
         <div id="page-wrapper">
             <div class="row">
                 <div class="col-lg-12">
-                    <h1 class="page-header">Tabel Makalah Tugas Akhir</h1>
+                    <h1 class="page-header">Tabel Laporan Praktik Kerja Lapangan</h1>
                 </div>
                 <!-- /.col-lg-12 -->
             </div>
@@ -151,7 +151,7 @@
                 <div class="col-lg-12">
                     <div class="panel panel-default">
                         <div class="panel-heading">
-                            Data Mahasiswa Yang Telah Mengumpulkan Makalah Beserta Laporan Tugas Akhir
+                            Data Mahasiswa Yang Telah Mengumpulkan Laporan Praktik Kerja Lapangan
                         </div>
                         <!-- /.panel-heading -->
                         <div class="panel-body">

@@ -103,12 +103,17 @@
             <div class="navbar-default sidebar" role="navigation">
                 <div class="sidebar-nav navbar-collapse">
                     <ul class="nav" id="side-menu">
+						<?php if($this->session->userdata('login')=='kajur'){ ?>
 						<li>
                             <a href="<?php echo base_url()."index.php/Aktifitas"?>"><i class="fa fa-clock-o fa-fw"></i> Aktifitas</a>
                         </li>
+						<?php } ?>
                         <li>
                             <a href="#" ><i class="fa fa-table fa-fw"></i> Tables<span class="fa arrow"></span></a>
                             <ul class="nav nav-second-level">
+                                <li>
+                                    <a href="<?php echo base_url()."index.php/PKL_Controllers/tabel_pkl"?>">Tabel Laporan PKL</a>
+                                </li>
                                 <li>
                                     <a href="<?php echo base_url()."index.php/TA_Controllers/tabel_ta"?>">Tabel Makalah TA</a>
                                 </li>
@@ -118,6 +123,9 @@
                         <li>
                             <a href="#" ><i class="fa fa-edit fa-fw"></i> Forms <span class="fa arrow"></span></a>
                             <ul class="nav nav-second-level">
+                                <li>
+                                    <a href="<?php echo base_url()."index.php/PKL_Controllers/form_pkl"?>">Form PKL</a>
+                                </li>
                                 <li>
                                     <a href="<?php echo base_url()."index.php/TA_Controllers/form_ta"?>">Form TA</a>
                                 </li>
@@ -132,6 +140,7 @@
         </nav>
 
         <div id="page-wrapper">
+			<?php if($this->session->userdata('login')=='kajur'){ ?>
             <div class="row">
                 <div class="col-lg-12">
                     <h1 class="page-header">Aktifitas</h1>
@@ -176,6 +185,7 @@
                 <!-- /.col-lg-12 -->
             </div>
             <!-- /.row -->
+			<?php } ?>
         </div>
         <!-- /#page-wrapper -->
 

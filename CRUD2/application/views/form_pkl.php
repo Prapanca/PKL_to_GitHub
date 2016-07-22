@@ -9,19 +9,13 @@
     <meta name="description" content="">
     <meta name="author" content="">
 
-    <title>Tabel Makalah TA</title>
+    <title>Form Makalah TA</title>
 
     <!-- Bootstrap Core CSS -->
     <link href="<?php echo base_url();?>resource/bower_components/bootstrap/dist/css/bootstrap.min.css" rel="stylesheet">
 
     <!-- MetisMenu CSS -->
     <link href="<?php echo base_url();?>resource/bower_components/metisMenu/dist/metisMenu.min.css" rel="stylesheet">
-
-    <!-- DataTables CSS -->
-    <link href="<?php echo base_url();?>resource/bower_components/datatables-plugins/integration/bootstrap/3/dataTables.bootstrap.css" rel="stylesheet">
-
-    <!-- DataTables Responsive CSS -->
-    <link href="<?php echo base_url();?>resource/bower_components/datatables-responsive/css/dataTables.responsive.css" rel="stylesheet">
 
     <!-- Custom CSS -->
     <link href="<?php echo base_url();?>resource/dist/css/sb-admin-2.css" rel="stylesheet">
@@ -45,21 +39,19 @@
     <!-- Metis Menu Plugin JavaScript -->
     <script src="<?php echo base_url();?>resource/bower_components/metisMenu/dist/metisMenu.min.js"></script>
 
-    <!-- DataTables JavaScript -->
-    <script src="<?php echo base_url();?>resource/bower_components/datatables/media/js/jquery.dataTables.min.js"></script>
-    <script src="<?php echo base_url();?>resource/bower_components/datatables-plugins/integration/bootstrap/3/dataTables.bootstrap.min.js"></script>
-
     <!-- Custom Theme JavaScript -->
     <script src="<?php echo base_url();?>resource/dist/js/sb-admin-2.js"></script>
-
-    <!-- Page-Level Demo Scripts - Tables - Use for reference -->
-    <script>
-    $(document).ready(function() {
-        $('#dataTables-example').DataTable({
-                responsive: true
-        });
-    });
-    </script>
+	
+	<style>
+		.button{
+			background-color:gray;
+			color:white;
+		}
+		.button:hover{
+			background-color:white;
+			color:black;
+		}
+	</style>
 
 </head>
 
@@ -142,54 +134,107 @@
         <div id="page-wrapper">
             <div class="row">
                 <div class="col-lg-12">
-                    <h1 class="page-header">Tabel Makalah Tugas Akhir</h1>
+                    <h1 class="page-header">Form Makalah Tugas Akhir</h1>
                 </div>
                 <!-- /.col-lg-12 -->
             </div>
             <!-- /.row -->
-            <div class="row">
-                <div class="col-lg-12">
-                    <div class="panel panel-default">
-                        <div class="panel-heading">
-                            Data Mahasiswa Yang Telah Mengumpulkan Makalah Beserta Laporan Tugas Akhir
-                        </div>
-                        <!-- /.panel-heading -->
-                        <div class="panel-body">
-                            <div class="dataTable_wrapper">
-                                <table class="table table-striped table-bordered table-hover" id="dataTables-example">
-                                    <thead>
-                                        <tr>
-                                            <th>NIM</th>
-                                            <th>Nama</th>
-                                            <th>Judul Makalah</th>
-                                            <th>Dosen Pembimbing</th>
-                                            <th>Angkatan</th>
-                                            <th></th>
-                                        </tr>
-                                    </thead>
-                                    <tbody>
-									<?php foreach ($row as $row){?>
-                                        <tr>
-                                            <td><?php echo $row->nim;?></td>
-                                            <td><?php echo $row->name;?></td>
-                                            <td><?php echo $row->judul;?></td>
-                                            <td><?php echo $row->nama_dosen;?></td>
-                                            <td><?php echo $row->angkatan;?></td>
-                                            <td><a href="<?php echo base_url()."index.php/TA_Controllers/detailTA/". $row->nim;?>">Detail</a></td>
-                                        </tr>
-									<?php }?>
-                                    </tbody>
-                                </table>
-                            </div>
-                            <!-- /.table-responsive -->
-                        </div>
-                        <!-- /.panel-body -->
-                    </div>
-                    <!-- /.panel -->
-                </div>
-                <!-- /.col-lg-12 -->
-            </div>
-            <!-- /.row -->
+			<div class="panel panel-default">
+				<div class="row">
+					<form method="POST" action="<?php echo base_url();?>index.php/PKL_Controllers/submitPKL" enctype="multipart/form-data">
+						<div class="col-lg-6">
+							<div class="panel panel-default">
+								<div class="panel-heading">
+									<p style="font-size:28px">Form Data Mahasiswa</p>
+								</div>
+								<div class="panel-body">
+									<div class="form-group">
+										<label>NIM</label>
+										<input class="form-control" type="number" name="nim" value="" placeholder="NIM Mahasiswa" required autofocus>
+									</div>
+									<div class="form-group">
+										<label>NAMA LENGKAP</label>
+										<input class="form-control" type="text" name="name" value="" placeholder="Masukkan Nama Lengkap Mahasiswa">
+									</div>						
+									<div class="form-group">
+										<label>ANGKATAN</label>
+										<select class="form-control" name="angkatan">
+											<option value=""> -- Masukkan Tahun Angkatan Mahasiswa -- </option>
+										<?php for($angkatan=2004; $angkatan<=date('Y'); $angkatan++) {?>
+											<option value="<?php echo $angkatan;?>">
+												<?php echo $angkatan;?>
+											</option>
+										<?php }?>
+										</select>
+									</div>
+									<div class="form-group">
+										<label>Unggah Foto</label><?php echo $error;?>
+										<input type="file" multiple name="foto[]">
+									</div>
+								</div>
+								<!-- /.panel-body -->
+							</div>
+							<!-- /.panel -->
+						</div>
+						<!-- /.col-lg-6 -->
+						<div class="col-lg-6">
+							<div class="panel panel-default">
+								<div class="panel-heading">
+									<p style="font-size:28px">Form Data Makalah</p>
+								</div>
+								<div class="panel-body">
+									<div class="form-group">
+										<label>Judul Makalah</label>
+										<textarea class="form-control" name="judul" rows="3" required> </textarea>
+									</div>
+									<div class="form-group">
+										<label>Unggah File .doc / .docx</label>
+										<input type="file" multiple name="doc[]">
+									</div>
+									<div class="form-group">
+										<label>Unggah File .pdf</label>
+										<input type="file" multiple name="pdf[]">
+									</div>
+									<div class="form-group">
+										<label>Unggah File .ppt / .pptx</label>
+										<input type="file" multiple name="ppt[]">
+									</div>
+									<div class="form-group">
+										<label>Unggah File SourceCode .zip /.rar </label>
+										<input type="file" multiple name="file1[]">
+									</div>
+									<div class="form-group">
+										<label>Unggah File Artikel Ilmiah .zip /.rar</label>
+										<input type="file" multiple name="file2[]">
+									</div>
+									<div class="form-group">
+										<label>Unggah File Lampiran .zip /.rar</label>
+										<input type="file" multiple name="file3[]">
+									</div>
+									<div class="form-group">
+										<label>Dosen Pembimbing</label>
+										<select class="form-control" name="nip">
+											<option value="none"> -- Pilih Dosen Pembimbing -- </option>
+										<?php foreach ($dosen as $row){?>
+											<option value="<?php echo $row->nip;?>"> <?php echo $row->nama;?> </option>
+										<?php }?>
+										</select>
+									</div>
+								</div>
+								<!-- /.panel-body -->
+							</div>
+							<!-- /.panel -->
+						</div>
+						<!-- /.col-lg-6 -->
+						<div style="text-align:center;" class="panel-body col-lg-12">
+								<button href="#" type="submit" name="submit" class="btn btn-default button">Submit Button</button>
+								<button type="reset" class="btn btn-default button">Reset Button</button>
+						</div>
+					</form>
+				</div>
+				<!-- /.row -->
+			</div>
+			<!--panel panel-default-->
         </div>
         <!-- /#page-wrapper -->
 

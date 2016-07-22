@@ -1,9 +1,9 @@
 <?php
-	class TA_Controllers extends CI_Controller{
+	class PKL_Controllers extends CI_Controller{
 		function __construct(){
 			parent::__construct();
 			$this->load->model("aktor");
-			$this->load->model('ta_models');
+			$this->load->model('PKL_models');
 			$this->load->helper(array('form', 'url'));
 			$this->load->helper('url');
 			$this->load->library('session');	
@@ -16,22 +16,22 @@
 			redirect('/Login');
 		}
 		
-		public function tabel_ta(){
+		public function tabel_pkl(){
 			if(!$this->session->has_userdata('login'))
 				redirect('/Login');
-			$data['row'] = $this->ta_models->getTabelTA();
+			$data['row'] = $this->pkl_models->getTabelPKL();
 			$data['nama'] = $this->aktor->getNama();
 			$data['linkKeluar'] = "logOut";
-			$this->load->view('tabel_ta', $data);
+			$this->load->view('tabel_pkl', $data);
 		}
 		
-		function form_ta(){
+		function form_pkl(){
 			if(!$this->session->has_userdata('login'))
 				redirect('/Login');
-			$this->load->view('form_ta', array('error' => ' ','nama'=> $this->aktor->getNama(), 'linkKeluar'=> 'logOut', 'dosen'=> $this->ta_models->dosen()));
+			$this->load->view('form_pkl', array('error' => ' ','nama'=> $this->aktor->getNama(), 'linkKeluar'=> 'logOut', 'dosen'=> $this->pkl_models->dosen()));
 		}
 		
-		function submitTA(){
+		function submitPKL(){
 			if(!is_dir(''.$this->input->post('nim'))){
 				$config['upload_path']      = './Uploads/'.$this->input->post('nim');
 				mkdir($config['upload_path'], 0777);
@@ -59,8 +59,6 @@
 
 				$this->upload->initialize($config);
 				$this->upload->do_upload('foto');
-				$uploadFile = $this->upload->data()['file_name'];
-				$data['foto'] = $uploadFile;
 			}
 			/*	./Upload Foto */
 			
@@ -86,8 +84,6 @@
 
 				$this->upload->initialize($config);
 				$this->upload->do_upload('doc');
-				$uploadFile = $this->upload->data()['file_name'];
-				$data['doc'] = $uploadFile;
 			}
 			/*	./Upload File .DOC*/
 			
@@ -111,8 +107,6 @@
 
 				$this->upload->initialize($config);
 				$this->upload->do_upload('pdf');
-				$uploadFile = $this->upload->data()['file_name'];
-				$data['pdf'] = $uploadFile;
 			}
 			/*	./Upload File .PDF*/
 			
@@ -138,84 +132,16 @@
 
 				$this->upload->initialize($config);
 				$this->upload->do_upload('ppt');
-				$uploadFile = $this->upload->data()['file_name'];
-				$data['ppt'] = $uploadFile;
 			}
 			/*	./Upload File .ppt / .pptx*/
 			
 			/*	/Upload File SorceCode .zip/.rar */
-			$config							= array();
-			$config['upload_path']			= './Uploads/'.$this->input->post('nim').'/';
-			$config['allowed_types']        = 'zip|rar';
-			$config['max_size']             = 100000;
-			
-			$this->load->library('upload');
-
-			$files = $_FILES;
-			$cpt = count($_FILES['file1']['name']);
-			for($i=0; $i<$cpt; $i++)
-			{
-				$_FILES['file1']['name']= $files['file1']['name'][$i];
-				$_FILES['file1']['type']= $files['file1']['type'][$i];
-				$_FILES['file1']['tmp_name']= $files['file1']['tmp_name'][$i];
-				$_FILES['file1']['error']= $files['file1']['error'][$i];
-				$_FILES['file1']['size']= $files['file1']['size'][$i];    
-
-				$this->upload->initialize($config);
-				$this->upload->do_upload('file1');
-				$uploadFile = $this->upload->data()['file_name'];
-				$data['source_code'] = $uploadFile;
-			}
 			/*	./Upload File SorceCode .zip/.rar*/
 			
 			/*	/Upload File Artikel Ilmiah .zip/.rar */
-			$config							= array();
-			$config['upload_path']			= './Uploads/'.$this->input->post('nim').'/';
-			$config['allowed_types']        = 'zip|rar';
-			$config['max_size']             = 100000;
-			
-			$this->load->library('upload');
-
-			$files = $_FILES;
-			$cpt = count($_FILES['file2']['name']);
-			for($i=0; $i<$cpt; $i++)
-			{
-				$_FILES['file2']['name']= $files['file2']['name'][$i];
-				$_FILES['file2']['type']= $files['file2']['type'][$i];
-				$_FILES['file2']['tmp_name']= $files['file2']['tmp_name'][$i];
-				$_FILES['file2']['error']= $files['file2']['error'][$i];
-				$_FILES['file2']['size']= $files['file2']['size'][$i];    
-
-				$this->upload->initialize($config);
-				$this->upload->do_upload('file2');
-				$uploadFile = $this->upload->data()['file_name'];
-				$data['artikel_ilmiah'] = $uploadFile;
-			}
 			/*	./Upload File Artikel Ilmiah .zip/.rar*/
 			
 			/*	/Upload File Lampiran .zip/.rar*/
-			$config							= array();
-			$config['upload_path']			= './Uploads/'.$this->input->post('nim').'/';
-			$config['allowed_types']        = 'zip|rar';
-			$config['max_size']             = 100000;
-			
-			$this->load->library('upload');
-
-			$files = $_FILES;
-			$cpt = count($_FILES['file3']['name']);
-			for($i=0; $i<$cpt; $i++)
-			{
-				$_FILES['file3']['name']= $files['file3']['name'][$i];
-				$_FILES['file3']['type']= $files['file3']['type'][$i];
-				$_FILES['file3']['tmp_name']= $files['file3']['tmp_name'][$i];
-				$_FILES['file3']['error']= $files['file3']['error'][$i];
-				$_FILES['file3']['size']= $files['file3']['size'][$i];    
-
-				$this->upload->initialize($config);
-				$this->upload->do_upload('file3');
-				$uploadFile = $this->upload->data()['file_name'];
-				$data['lampiran'] = $uploadFile;
-			}
 			/*	./Upload File Lampiran .zip/.rar*/
 			
 			function TampilPdf(){
@@ -223,44 +149,44 @@
 				$this->pdf->Tampil();
 			}
 			
-			$this->ta_models->submitTA($data);
-			redirect ('TA_Controllers/tabel_ta');
+			$this->pkl_models->submitPKL();
+			redirect ('PKL_Controllers/tabel_pkl');
 			
 		}
 		
-		function detailTA($nim){
+		function detailPKL($nim){
 			if(!$this->session->has_userdata('login'))
 				redirect('/Login');
 			$data['nama'] = $this->aktor->getNama();
 			$data['linkKeluar'] = "../logOut";
-			$data['row'] = $this->ta_models->detailTA($nim);
-			$this->load->view('detail_ta', $data);
+			$data['row'] = $this->pkl_models->detailPKL($nim);
+			$this->load->view('detail_pkl', $data);
 		}
 		
-		function editTA($nim){
+		function editPKL($nim){
 			if(!$this->session->has_userdata('login'))
 				redirect('/Login');
 			$data['nama'] = $this->aktor->getNama();
 			$data['linkKeluar'] = "../logOut";
-			$data['row'] = $this->ta_models->editTA($nim);
-			$this->load->view('form_ta_edit', $data);
+			$data['row'] = $this->pkl_models->editPKL($nim);
+			$this->load->view('form_pkl_edit', $data);
 		}
 		
-		function deleteTA($nim){
-			/*$data = array('id_admin'=>1, 'aksi'=>'Menghapus Data Makalah TA', 'tujuan'=>0);
-			$this->db->insert('aktifitas',$data);*/
-			$this->ta_models->deleteTA($nim);
-			//redirect ('TA_Controllers/tabel_ta');
+		function deletePKL($nim){
+			$data = array('id_admin'=>1, 'aksi'=>'Menghapus Data Makalah PKL', 'tujuan'=>0);
+			$this->db->insert('aktifitas',$data);
+			$this->pkl_models->deletePKL($nim);
+			redirect ('PKL_Controllers/tabel_pkl');
 		}
 		
 		function update(){
-			$this->ta_models->update();
-			redirect ('TA_Controllers/tabel_ta');
+			$this->pkl_models->update();
+			redirect ('PKL_Controllers/tabel_pkl');
 		}
 		
-		function form_ta_edit(){
-			$data ['dosen'] = $this->ta_models->dosen();
-			$this->load->view('form_ta_edit', $data);
+		function form_pkl_edit(){
+			$data ['dosen'] = $this->pkl_models->dosen();
+			$this->load->view('form_pkl_edit', $data);
 		}
 		
 	}

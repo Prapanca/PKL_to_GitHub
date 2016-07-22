@@ -55,7 +55,7 @@
                     </div>
                     <div class="panel-body">
                         <form method="POST" action="<?php echo base_url();?>index.php/Login/authentication">
-							<?php if(!$this->session->has_userdata('login')) {?>
+							<?php if(!$this->session->usedata){ ?>
 								<div class="alert alert-danger">
 									<span class="glyphicon glyphicon-info-sign"></span> username/password Salah
 								</div>

@@ -95,12 +95,17 @@
             <div class="navbar-default sidebar" role="navigation">
                 <div class="sidebar-nav navbar-collapse">
                     <ul class="nav" id="side-menu">
+						<?php if($this->session->userdata('login')=='kajur'){ ?>
 						<li>
                             <a href="<?php echo base_url()."index.php/Aktifitas"?>"><i class="fa fa-clock-o fa-fw"></i> Aktifitas</a>
                         </li>
+						<?php } ?>
                         <li>
                             <a href="#" ><i class="fa fa-table fa-fw"></i> Tables<span class="fa arrow"></span></a>
                             <ul class="nav nav-second-level">
+                                <li>
+                                    <a href="<?php echo base_url()."index.php/PKL_Controllers/tabel_pkl"?>">Tabel Laporan PKL</a>
+                                </li>
                                 <li>
                                     <a href="<?php echo base_url()."index.php/TA_Controllers/tabel_ta"?>">Tabel Makalah TA</a>
                                 </li>
@@ -110,6 +115,9 @@
                         <li>
                             <a href="#" ><i class="fa fa-edit fa-fw"></i> Forms <span class="fa arrow"></span></a>
                             <ul class="nav nav-second-level">
+                                <li>
+                                    <a href="<?php echo base_url()."index.php/PKL_Controllers/form_pkl"?>">Form PKL</a>
+                                </li>
                                 <li>
                                     <a href="<?php echo base_url()."index.php/TA_Controllers/form_ta"?>">Form TA</a>
                                 </li>
@@ -177,15 +185,35 @@
 										<textarea class="form-control" name="judul" rows="3" required> <?php echo $row->judul;?> </textarea>
 									</div>
 									<div class="form-group">
-										<label>Unggah File .zip /.rar</label>
-										<input type="file" name="file">
+										<label>Unggah File .doc / .docx</label>
+										<input type="file" name="doc">
+									</div>
+									<div class="form-group">
+										<label>Unggah File .pdf</label>
+										<input type="file" name="pdf">
+									</div>
+									<div class="form-group">
+										<label>Unggah File .ppt / .pptx</label>
+										<input type="file" name="ppt">
+									</div>
+									<div class="form-group">
+										<label>Unggah File SourceCode .zip /.rar </label>
+										<input type="file" name="file1">
+									</div>
+									<div class="form-group">
+										<label>Unggah File Artikel Ilmiah .zip /.rar</label>
+										<input type="file" name="file2">
+									</div>
+									<div class="form-group">
+										<label>Unggah File Lampiran .zip /.rar</label>
+										<input type="file" name="file3">
 									</div>
 									<br>
 									<div class="form-group">
 										<label>Dosen Pembimbing</label>
 										<select class="form-control" name="nip">
 										<?php foreach ($dosen as $row){?>
-											<option value="<?php echo $row->nip;?>"> <?php echo $row->nama;?></option>
+											<option value="<?php echo $row->nip;?>"> <?php echo $row->nama;?> </option>
 										<?php }?>
 										</select>
 									</div>
