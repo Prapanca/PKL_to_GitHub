@@ -9,7 +9,7 @@
     <meta name="description" content="">
     <meta name="author" content="">
 
-    <title>Form Makalah TA</title>
+    <title>Form Laporan PKL</title>
 
     <!-- Bootstrap Core CSS -->
     <link href="<?php echo base_url();?>resource/bower_components/bootstrap/dist/css/bootstrap.min.css" rel="stylesheet">
@@ -134,7 +134,7 @@
         <div id="page-wrapper">
             <div class="row">
                 <div class="col-lg-12">
-                    <h1 class="page-header">Form Makalah Tugas Akhir</h1>
+                    <h1 class="page-header">Form Laporan Praktik Kerja Lapangan</h1>
                 </div>
                 <!-- /.col-lg-12 -->
             </div>
@@ -180,11 +180,11 @@
 						<div class="col-lg-6">
 							<div class="panel panel-default">
 								<div class="panel-heading">
-									<p style="font-size:28px">Form Data Makalah</p>
+									<p style="font-size:28px">Form Data Laporan</p>
 								</div>
 								<div class="panel-body">
 									<div class="form-group">
-										<label>Judul Makalah</label>
+										<label>Judul Laporan</label>
 										<textarea class="form-control" name="judul" rows="3" required> </textarea>
 									</div>
 									<div class="form-group">

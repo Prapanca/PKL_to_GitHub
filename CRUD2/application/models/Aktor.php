@@ -15,11 +15,19 @@
 			}
 			else false;
 		}
+
 		function getNama(){
 			if(!$this->session->has_userdata('login'))
 				return false;
 			$temp = $this->db->query('select name as nama from admin where status="'.$this->session->userdata('login').'"')->row_array();
 			return $temp['nama'];
+		}
+
+		function getStatus(){
+			if(!$this->session->has_userdata('login'))
+				return false;
+			$temp = $this->db->query('select status from admin where status="'.$this->session->userdata('login').'"')->row_array();
+			return $temp['status'];
 		}
 	}
 ?>

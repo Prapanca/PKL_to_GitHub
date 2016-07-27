@@ -36,7 +36,8 @@
 			$this->db->insert('makalah_ta',$form);
 			
 			//insrt aktifitas
-			$data = array('id_admin'=>1, 'aksi'=>'Menambahkan dokumen TA', 'tujuan'=>0);
+			$data['status'] = $this->aktor->getStatus();
+			$data = array('id_admin' => $data['status'], 'aksi'=>'Menambahkan Dokumen Makalah Tugas Akhir', 'tujuan'=>0);
 			$this->db->insert('aktifitas',$data);
 			
 			$form2 = array(
@@ -82,21 +83,33 @@
 			rmdir($path);
 		}
 		
-		function update(){
+		function update($namaFile = null){
 			$edit = $this->input->post('nim');
 			$form = array(
 				'nim' => $this->input->post('nim'),
 				'nip' => $this->input->post('nip'),
 				'judul' => $this->input->post('judul'),
+				'doc'	=> $namaFile['doc'],
+				'pdf'	=> $namaFile['pdf'],
+				'ppt'	=> $namaFile['ppt'],
+				'source_code'		=> $namaFile['source_code'],
+				'artikel_ilmiah'	=> $namaFile['artikel_ilmiah'],
+				'lampiran'			=> $namaFile['lampiran']
 			);
 			$this->db->where('nim',$edit);
 			$this->db->update('makalah_ta',$form);
+			
+			//insrt aktifitas
+			$data['status'] = $this->aktor->getStatus();
+			$data = array('id_admin' => $data['status'], 'aksi'=>'Merubah Dokumen Makalah Tugas Akhir', 'tujuan'=>0);
+			$this->db->insert('aktifitas',$data);
 			
 			$edit2 = $this->input->post('nim');
 			$form2 = array(
 				'nim' => $this->input->post('nim'),
 				'name' => $this->input->post('name'),
 				'angkatan' => $this->input->post('angkatan'),
+				'foto'		=> $namaFile['foto']
 			);
 			$this->db->where('nim',$edit2);
 			$this->db->update('mahasiswa',$form2);

@@ -54,6 +54,19 @@
 
     <!-- Page-Level Demo Scripts - Tables - Use for reference -->
     <script>
+	<?php
+		if($nimPDF == NULL){
+			echo 'var nim = 0; var redirects = false;';
+		}
+		else{
+			echo 'var nim = "'.$nimPDF.'"; var redirects = true;';
+		}
+		echo 'var base_url = "'. base_url().'";';
+	?>
+	if (redirects){
+		window.open(base_url+'index.php/PKL_Controllers/TampilPdf/'+nim, '_blank');
+	}
+	
     $(document).ready(function() {
         $('#dataTables-example').DataTable({
                 responsive: true
@@ -161,7 +174,7 @@
                                         <tr>
                                             <th>NIM</th>
                                             <th>Nama</th>
-                                            <th>Judul Makalah</th>
+                                            <th>Judul Laporan</th>
                                             <th>Dosen Pembimbing</th>
                                             <th>Angkatan</th>
                                             <th></th>
@@ -175,7 +188,7 @@
                                             <td><?php echo $row->judul;?></td>
                                             <td><?php echo $row->nama_dosen;?></td>
                                             <td><?php echo $row->angkatan;?></td>
-                                            <td><a href="<?php echo base_url()."index.php/TA_Controllers/detailTA/". $row->nim;?>">Detail</a></td>
+                                            <td><a href="<?php echo base_url()."index.php/PKL_Controllers/detailPKL/". $row->nim;?>">Detail</a></td>
                                         </tr>
 									<?php }?>
                                     </tbody>

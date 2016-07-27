@@ -141,7 +141,7 @@
             <!-- /.row -->
 			<div class="panel panel-default">
 				<div class="row">
-					<form method="POST" action="<?php echo base_url();?>index.php/TA_Controllers/update">
+					<form method="POST" action="<?php echo base_url();?>index.php/TA_Controllers/update" enctype="multipart/form-data">
 					<?php foreach ($row as $row){?>
 						<div class="col-lg-6">
 							<div class="panel panel-default">
@@ -161,12 +161,16 @@
 										<label>ANGKATAN</label>
 										<select class="form-control" name="angkatan">
 											<option value=""> -- Masukkan Tahun Angkatan Mahasiswa -- </option>
-											<option value="<?php echo $row->angkatan;?>"> <?php echo $row->angkatan;?> </option>
+											<?php for($angkatan=2004; $angkatan<=date('Y'); $angkatan++) {?>
+											<option value="<?php echo $angkatan;?>">
+												<?php echo $angkatan;?>
+											</option>
+										<?php }?>
 										</select>
 									</div>
 									<div class="form-group">
 										<label>Unggah Foto</label>
-										<input type="file" name="file">
+										<input type="file" multiple name="foto[]">
 									</div>
 								</div>
 								<!-- /.panel-body -->
@@ -186,27 +190,27 @@
 									</div>
 									<div class="form-group">
 										<label>Unggah File .doc / .docx</label>
-										<input type="file" name="doc">
+										<input type="file" multiple name="doc[]">
 									</div>
 									<div class="form-group">
 										<label>Unggah File .pdf</label>
-										<input type="file" name="pdf">
+										<input type="file" multiple name="pdf[]">
 									</div>
 									<div class="form-group">
 										<label>Unggah File .ppt / .pptx</label>
-										<input type="file" name="ppt">
+										<input type="file" multiple name="ppt[]">
 									</div>
 									<div class="form-group">
 										<label>Unggah File SourceCode .zip /.rar </label>
-										<input type="file" name="file1">
+										<input type="file" multiple name="file1[]">
 									</div>
 									<div class="form-group">
 										<label>Unggah File Artikel Ilmiah .zip /.rar</label>
-										<input type="file" name="file2">
+										<input type="file" multiple name="file2[]">
 									</div>
 									<div class="form-group">
 										<label>Unggah File Lampiran .zip /.rar</label>
-										<input type="file" name="file3">
+										<input type="file" multiple name="file3[]">
 									</div>
 									<br>
 									<div class="form-group">

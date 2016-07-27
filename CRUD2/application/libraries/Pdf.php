@@ -3,59 +3,60 @@
 
 	class Pdf extends FPDF
 	{
-
-		function Judul($judul)
+		// Page Left
+		function Header()
 		{
-			// Read text file
-			$txt = file_get_contents($judul);
-			// Times 12
-			$this->SetFont('Times','B',11);
-			$this->SetX(10);
-			$this->GetX();
-			// Output justified text
-			$this->MultiCell(0,5,$txt);
-			// Line break
-			$this->Ln();
-		}
-
-		function Section($section)
-		{
-			// Read text file
-			$txt = file_get_contents($section);
-			// Times 12
-			$this->SetFont('Times','',11);
-			$this->SetX(10);
-			$this->GetX();
-			// Output justified text
-			$this->MultiCell(0,5,$txt);
-			// Line break
-			$this->Ln();
-		}
-
-		function Right($judul,$section)
-		{
-			$this->Judul($judul);
-			$this->Section($section);
+			$this->Image(APPPATH.'libraries/bebas jurusan.png',5,10,141,153,'PNG');
 		}
 		
-		function Tulisan(){
-			$this->SetFont('Times','B',12);
-			$this->MultiCell(0,5,'Aditya Sandrian Prapanca');
-			$this->SetX(50);
-			$this->GetX();
-			$this->SetY(50);
+		function Nama()
+		{
+			$this->SetY(42);
 			$this->GetY();
+			$this->SetX(32);
+			$this->GetX();
+			$this->MultiCell(110,5,$this->nama);
+		}
+		function NIM()
+		{
+			$this->SetX(32);
+			$this->GetX();
+			$this->MultiCell(110,5,$this->nim);
+		}
+		function Judul()
+		{
+			$this->SetX(32);
+			$this->GetX();
+			$this->MultiCell(110,9,$this->judul);
+		}
+		function Tanggal()
+		{
+			$this->SetX(115);
+			$this->GetX();
+			$this->MultiCell(50,5,date('d M Y'));			
 		}
 		
-		function Tampil(){
-			$this->AddPage('P',array(165,200));
-			//$pdf->Tulisan();
-			$this->Right('header.txt','baru.php');
-			$this->Line(11,170,55,170);
+		function PrintChapter()
+		{
+			$this->Nama();
+			$this->Ln(4.5);
+			$this->NIM();
+			$this->Ln(21);
+			$this->Judul();
+			$this->Ln(30.5);
+			$this->Tanggal();
+		}
+		
+		function Tampil($array)
+		{
+			$this->nama = $array['nama'];
+			$this->nim = $array['nim'];
+			$this->judul = $array['judul'];
+			$this->AddPage('P',array(180,155));
+			$this->SetFont('Times','',12);
+			$this->PrintChapter();
 			$this->Output();
 		}
-
-	}
-
-	
+		
+	}		
 ?>

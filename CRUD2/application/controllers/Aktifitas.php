@@ -8,7 +8,8 @@
 			$this->load->library("session");
 		}
 		public function logOut(){
-			$data = array('id_admin'=>1, 'aksi'=>'Keluar dari Sistem Penyimpanan Laporann PKL dan Makalah TA', 'tujuan'=>0);
+			$data['status'] = $this->aktor->getStatus();
+			$data = array('id_admin' => $data['status'], 'aksi'=>'Keluar dari Sistem Penyimpanan Laporann PKL dan Makalah TA', 'tujuan'=>0);
 			$this->db->insert('aktifitas',$data);
 			$this->session->unset_userdata('login');
 			redirect('/Login');

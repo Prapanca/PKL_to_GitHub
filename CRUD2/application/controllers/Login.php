@@ -4,6 +4,7 @@
 			parent::__construct();
 			$this->load->model("aktor");
 			$this->load->helper('url');
+			$this->load->database();
 		}
 		
 		function authentication(){
@@ -17,7 +18,8 @@
 			}
 			if($this->aktor->setAktor($this->input->post('username'),$this->input->post('password')))
 			{
-				$data = array('id_admin'=>1, 'aksi'=>'Masuk dari Sistem Penyimpanan Laporann PKL dan Makalah TA', 'tujuan'=>0);
+				$data['status'] = $this->aktor->getStatus();
+				$data = array('id_admin' => $data['status'], 'aksi'=>'Masuk dari Sistem Penyimpanan Laporann PKL dan Makalah TA', 'tujuan'=>0);
 				$this->db->insert('aktifitas',$data);
 				if($this->session->userdata('login')=='kajur'){
 					redirect("/Aktifitas");

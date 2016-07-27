@@ -55,11 +55,6 @@
                     </div>
                     <div class="panel-body">
                         <form method="POST" action="<?php echo base_url();?>index.php/Login/authentication">
-							<?php if(!$this->session->usedata){ ?>
-								<div class="alert alert-danger">
-									<span class="glyphicon glyphicon-info-sign"></span> username/password Salah
-								</div>
-							<?php }?>
                             <fieldset>
                                 <div class="form-group">
                                     <input class="form-control" placeholder="Masukkan Username" name="username" type="text" required autofocus>

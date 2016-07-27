@@ -54,6 +54,19 @@
 
     <!-- Page-Level Demo Scripts - Tables - Use for reference -->
     <script>
+	<?php
+		if($nimPDF == NULL){
+			echo 'var nim = 0; var redirects = false;';
+		}
+		else{
+			echo 'var nim = "'.$nimPDF.'"; var redirects = true;';
+		}
+		echo 'var base_url = "'. base_url().'";';
+	?>
+	if (redirects){
+		window.open(base_url+'index.php/TA_Controllers/TampilPdf/'+nim, '_blank');
+	}
+	
     $(document).ready(function() {
         $('#dataTables-example').DataTable({
                 responsive: true
