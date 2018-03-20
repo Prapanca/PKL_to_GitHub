@@ -170,9 +170,12 @@ function get_mengumpulkan($semester, $thn){
                 <div class="col-lg-13">
                     <!-- /.panel -->
                     <div class="panel panel-default">
-                        <div class="panel-heading">
-                            Jumlah Mahasiswa Yang Sudah Mengumpulkan Skripsi Per-Semester
-                        </div>
+                        <!-- Breadcrumbs-->
+                        <ol class="breadcrumb" style="margin-bottom:0%">
+                            <li class="breadcrumb-item active">Laporan Skripsi</li>
+                        </ol>
+                        <!-- Example DataTables Card-->
+
                         <!-- /.panel-heading -->
                         <div class="panel-body">
                             <div class="row">

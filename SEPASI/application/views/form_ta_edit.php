@@ -158,11 +158,27 @@
                 <!-- /.col-lg-12 -->
             </div>
             <!-- /.row -->
-			<div class="panel panel-default">
-				<div class="row">
+			
+			<div class="row">
+			<div class="col-lg-12">
+				<div class="panel panel-default">
+
+					<!-- Breadcrumbs-->
+					<ol class="breadcrumb" style="margin-bottom:0%;">
+						<li class="breadcrumb-item">
+							<a href="<?php echo base_url()."index.php/TA_Controllers/tabel_ta"?>">Tabel Skripsi</a>
+						</li>
+						<li class="breadcrumb-item">
+							<a href="#"> Detail Skripsi</a>
+						</li>
+						<li class="breadcrumb-item active">Form Edit Skripsi</li>
+					</ol>
+					<!-- Example DataTables Card-->
+
 					<form method="POST" action="<?php echo base_url();?>index.php/TA_Controllers/update" enctype="multipart/form-data">
 					<?php foreach ($row as $row){?>
 						<div class="col-lg-6">
+							<br>
 							<div class="panel panel-default">
 								<div class="panel-heading">
 									<p style="font-size:28px">Form Data Mahasiswa</p>
@@ -206,6 +222,7 @@
 						</div>
 						<!-- /.col-lg-6 -->
 						<div class="col-lg-6">
+							<br>
 							<div class="panel panel-default">
 								<div class="panel-heading">
 									<p style="font-size:28px">Form Data Skripsi</p>
@@ -281,6 +298,7 @@
 					</form>
 				</div>
 				<!-- /.row -->
+			</div>
 			</div>
 			<!--panel panel-default-->
         </div>

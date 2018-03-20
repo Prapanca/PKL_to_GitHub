@@ -220,7 +220,7 @@
 								</div>
 								<div class="panel-body">
 									<div class="form-group">
-										<label>NIM</label>
+										<label>NIM</label> <?php echo (isset($error2)? $error2:"");?>
 										<input class="form-control" type="number" id="nim" name="nim" value="" placeholder="NIM Mahasiswa" required autofocus>
 									</div>
 									<div class="form-group">
@@ -232,7 +232,7 @@
 										<input class="form-control" type="text" id="angkatan" name="angkatan" value="" placeholder="Masukkan Angkatan Mahasiswa" readonly>
 									</div>
 									<div class="form-group">
-										<label>Unggah Foto</label><?php echo $error;?>
+										<label>Unggah Foto</label><?php echo (isset($error)?$error:"");?>
 										<input type="file" onchange="checkSize();" id="userfileId" name="foto[]">
 									</div>
 								</div>

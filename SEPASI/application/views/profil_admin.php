@@ -155,9 +155,19 @@
 
         <div id="page-wrapper">
                 <div class="col-lg-12">
-                    <h1 class="page-header"> Profil Admin dan Ketua Departemen</h1>
+                    <h1 class="page-header" style="margin-bottom: 0%;"> Profil Admin dan Ketua Departemen</h1>
                 </div>
                 <!-- /.col-lg-12 -->
+
+                <div class="col-lg-12">
+                	<!-- Breadcrumbs-->
+					<ol class="breadcrumb">
+						<li class="breadcrumb-item active">Profil Aktor</li>
+					</ol>
+					<!-- Example DataTables Card-->
+				</div>
+
+				<br>
 				<div class="col-lg-10">
 					<div class="panel panel-default">
 						<div class="panel-heading">
@@ -172,7 +182,7 @@
 								<?php
 									} else{
 								?>
-										<img src="<?php echo base_url().'/uploads/'.$data[1]->status.'/'.$data[1]->foto;?>">
+										<img src="<?php echo base_url().'/aktor/'.$data[1]->status.'/'.$data[1]->foto;?>">
 								<?php
 									}
 								?>
@@ -214,7 +224,7 @@
 								<?php
 									} else{
 								?>
-										<img src="<?php echo base_url()."/uploads/".$data[0]->id_admin."/".$data[0]->foto;?>">	
+										<img src="<?php echo base_url()."/aktor/".$data[0]->id_admin."/".$data[0]->foto;?>">	
 								<?php
 									}
 								?>

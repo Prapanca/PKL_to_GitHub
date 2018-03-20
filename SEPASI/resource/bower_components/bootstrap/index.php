@@ -1,0 +1,9 @@
+<p>
+
+	JIANCOK KOE SU !!!
+
+	WANI-WANINE SOK MEH NGE-HACK WEBSITEKU SU !!!
+
+	MUATAMU !!!
+
+</p>

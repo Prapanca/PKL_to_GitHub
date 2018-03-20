@@ -76,63 +76,6 @@
 			$this->load->view('profil', $data);
 		}
 		
-		function update(){
-			/*------------ semester -----------*/
-			$query_semester = $this->db->query("SELECT * FROM semester");
-			$query_semester = $query_semester->row_array();
-			$data['status_smt'] = $query_semester['status_smt'];
-			$data['thn_ajaran'] = $query_semester['thn_ajaran'];
-			/*------------ semester -----------*/
-			
-			/* Cek File Admin */
-			$this->load->database();
-			$id_admin = $this->input->post('id_admin');
-			$this->db->where('id_admin', $id_admin);
-			$admin = $this->db->get('admin')->result_array()[0];
-			/* #/Cek File Admin */
-			
-			/*	Upload Foto */
-			if($_FILES['foto']['name']!=null){
-				$config							= array();
-				$config['upload_path']			= './Uploads/'.$this->input->post('id_admin').'/';
-				$config['allowed_types']        = 'gif|jpg|png';
-				$config['max_size']             = 100000;
-				$config['max_width']            = 5000;
-				$config['max_height']           = 5000;
-				
-				$this->load->library('upload');
-				
-				$files = $_FILES;
-				$cpt = count($_FILES['foto']['name']);
-				for($i=0; $i<$cpt; $i++)
-				{
-					$_FILES['foto']['name']= $files['foto']['name'][$i];
-					$_FILES['foto']['type']= $files['foto']['type'][$i];
-					$_FILES['foto']['tmp_name']= $files['foto']['tmp_name'][$i];
-					$_FILES['foto']['error']= $files['foto']['error'][$i];
-					$_FILES['foto']['size']= $files['foto']['size'][$i];    
-
-					$this->upload->initialize($config);
-					$this->upload->do_upload('foto');
-					$uploadFile = $this->upload->data()['file_name'];
-					if (!empty($uploadFile)){
-						if (!empty($mahasiswa['foto'])){
-							$path= str_ireplace('\application','',APPPATH).'uploads\\'.$id_admin.'\\'.$admin['foto'];
-							unlink($path);
-						}
-					}
-					$data['foto'] = $uploadFile;
-				}
-			}else{
-				$data['foto'] = null;
-			}
-			/*	./Upload Foto */
-			
-			$this->aktor->update($data);
-			//$this->session->set_flashdata('status', 'Sukses');
-			//redirect ('TA_Controllers/detailTA/'.$nim.'');
-		}
-		
 		public function simpan_profil(){
 			$id = $this->input->post('id_admin');
 			$id= intval($id);
@@ -142,20 +85,47 @@
 			$id.='';
 			if(!$this->session->has_userdata('login'))
 				redirect('/Login');
-			$name = $this->input->post('name');
-			$nip = $this->input->post('nip');
-			$username = $this->input->post('username');
-			$password = $this->input->post('password');
-			$foto = $this->input->post('foto');
-			
+			$name 		= $this->input->post('name');
+			$nip		= $this->input->post('nip');
+			$email		= $this->input->post('email');
+			$username	= $this->input->post('username');
+			$password	= $this->input->post('password');
+
+			if(!is_dir('aktor/'.($id == 1 ? 'admin' : 'kajur').'/'))
+				{
+					mkdir('aktor/'.($id = 1 ? 'admin' : 'kajur'));
+				}
+
+			$conPic['upload_path'] = 'aktor/'.($id = 1 ? 'admin' : 'kajur');
+			$conPic['allowed_types'] = 'png|jpg';
+			$conPic['overwrite'] = true;
+			$conPic['remove_spaces'] = true;
+			$conPic['max_size'] = 2048;
+			$conPic['max_width'] = 1400;
+			$conPic['max_height'] = 1800;
+
 			$data = array(
 				'name'=>$name,
 				'nip'=>$nip,
+				'email'=>$email,
 				'username'=>$username,
-				'password'=> md5($password),
-				'foto'=>$foto
+				'password'=> md5($password)
 			);
-			$update = $this->aktor->update($id, $data);
+			$this->load->library('upload',$conPic);
+			$this->upload->initialize($conPic);
+			if(!$this->upload->do_upload('foto')){
+				//exit($this->upload->display_errors());	
+			}
+			else{
+
+				$dataS = $this->upload->data();
+
+				$data['foto'] = $dataS['file_name'];
+			}
+
+			
+			$update = $this->aktor->update(($id == 'admin' ? 2 : 1), $data);
+			//exit(var_dump($id));
 			redirect($_SERVER['HTTP_REFERER']);
 		}
 	}

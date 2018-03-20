@@ -166,9 +166,16 @@
             <div class="row">
                 <div class="col-lg-12">
                     <div class="panel panel-default">
-                        <div class="panel-heading">
-                            Data Mahasiswa Yang Telah Mengumpulkan Skripsi
-                        </div>
+                        <!-- Breadcrumbs-->
+                        <ol class="breadcrumb" style="margin-bottom:0%">
+                            <li class="breadcrumb-item">
+                                <a href="<?php echo base_url()."index.php/ReportTA_Controllers/report_ta"?>">Laporan Skripsi</a>
+                            </li>
+                            <li class="breadcrumb-item active">Tabel Data Skripsi Per-Semester</li>
+                        </ol>
+                        <!-- Example DataTables Card-->
+
+
                         <!-- /.panel-heading -->
                         <div class="panel-body">
                             <div class="dataTable_wrapper">

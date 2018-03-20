@@ -48,29 +48,26 @@
     <div class="container">
         <div class="row">
             <div class="col-md-4 col-md-offset-4">
-                <!--<div class="login-panel panel panel-default" style="background-color: rgba(0,0,0,0); padding-bottom: 0px;">-->
-                    <div class="panel-heading" style="color: white; text-align: center; font-size: 40px; padding-bottom: 0%; margin-top: 30%; ">
-                        <b>SEPASI</b> - INFORMATIKA 
+                <div class="login-panel panel panel-default" style="margin-top: 40%;">
+                    <div class="panel-heading">
+                        <h3 class="panel-title">Hapus Password</h3>
                     </div>
-                <!--</div>-->
-                <div class="login-panel panel panel-default" style="margin-top: 5%;">
                     <div class="panel-body">
-						<form method="POST" action="<?php echo base_url();?>index.php/Login/authentication" enctype="multipart/form-data">
+                        <div class="panel-heading text-center">
+                            <b style="font-size: 25px;">Lupa Password ?</b>
+                            <p style="font-size: 15px;">Silahkan masukkan alamat email yang terdaftar, dan kami akan mengirim instruksi untuk merubah password anda.</p>
+                        </div>
+						<form method="POST" action="<?php echo base_url();?>index.php/Login/lupaPassword" enctype="multipart/form-data">
 							<fieldset>
                                 <div class="form-group">
-									<label>Username :</label>
-                                    <input class="form-control" placeholder="Username" name="username" type="text" autofocus required>
-                                </div>
-                                <div class="form-group">
-									<label>Password :</label>
-                                    <input class="form-control" placeholder="Password" name="password" type="password" required>
+                                    <input class="form-control" placeholder="Masukkan alamat email" name="email" type="email" required>
                                 </div>
                                 <!-- Change this to a button or input when using this as a form -->
-								<input type="submit" name="submit" value="Masuk" class="btn btn-lg btn-primary btn-block">
+								<input type="submit" name="submit" value="Hapus Password" class="btn btn-lg btn-primary btn-block">
                             </fieldset>
                         </form>
 						<div class="text-center" style="padding-top:15px;">
-							<a class="d-block small" href="<?php echo base_url()."index.php/Login/lupaPassword"?>">Lupa Password ?</a>
+							<a class="d-block small" href="<?php echo base_url()."index.php/Login/index"?>"> Halaman Masuk </a>
 						</div>
                     </div>
                 </div>

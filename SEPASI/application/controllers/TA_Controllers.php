@@ -3,7 +3,8 @@
 		function __construct(){
 			parent::__construct();
 			$this->load->model("aktor");
-			$this->load->model('ta_models');
+			$this->load->model('TA_Models');
+			$this->ta_models = new TA_Models();
 			$this->load->helper(array('form', 'url'));
 			$this->load->helper('url');
 			$this->load->library('session');
@@ -115,6 +116,23 @@
 		}
 		
 		function submitTA(){
+			if(!is_null($this->ta_models->detailTA($this->input->post('nim')))){
+				$query_semester = $this->db->query("SELECT * FROM semester");
+				$query_semester = $query_semester->row_array();
+				if(!$this->session->has_userdata('login'))
+					redirect('/Login');
+				//echo "Hello";
+					$this->load->view('form_ta',
+									array('error2' => ' nim '.$this->input->post('nim').' terdaftar, silahkan edit <a href="'.base_url()."index.php/TA_Controllers/detailTA/".$this->input->post('nim').'">disini</a>',
+										'nama'=> $this->aktor->getNama(),
+										'linkKeluar'=> 'logOut',
+										'dosen'=> $this->ta_models->dosen(),
+										'status_smt' => $query_semester['status_smt'],
+										'thn_ajaran' => $query_semester['thn_ajaran'],
+										)
+							);
+			return;
+			}
 			if(!is_dir(''.$this->input->post('nim'))){
 				$config['upload_path']      = './Uploads/'.$this->input->post('nim');
 				mkdir($config['upload_path'], 0777);
@@ -321,7 +339,7 @@
 			/*	./Upload File Lampiran .zip/.rar*/
 			
 			$this->ta_models->submitTA($data);
-			redirect ('TA_Controllers/tabel_ta/');
+			redirect ('TA_Controllers/detailTA/'.$this->input->post('nim'));
 		}
 		
 		function TampilPdf($nim){

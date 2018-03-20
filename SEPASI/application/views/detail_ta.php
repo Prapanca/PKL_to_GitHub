@@ -66,8 +66,8 @@
 			padding-right:15%;
 		}
 		img{
-			width:112.5px;
-			height:150px;
+			width:145px;
+			height:200px;
 			float:right;
 			margin-right:10px;
 			margin-left:50px;
@@ -178,6 +178,7 @@
         <!-- Page Content -->
         <div id="page-wrapper">
             <div class="container-fluid">
+
 			<?php foreach ($row as $row){?>
                 <div class="row">
                     <div class="col-lg-12">
@@ -189,6 +190,15 @@
 				<div class="row">
 					<div class="col-lg-12">
 						<div class="panel panel-default">
+							<!-- Breadcrumbs-->
+								<ol class="breadcrumb" style="margin-bottom:0%">
+									<li class="breadcrumb-item">
+										<a href="<?php echo base_url()."index.php/TA_Controllers/tabel_ta"?>">Tabel Skripsi</a>
+									</li>
+									<li class="breadcrumb-item active">Detail Skripsi</li>
+								</ol>
+							<!-- Example DataTables Card-->
+
 							<div class="panel-body">
 								<?php if($this->session->userdata('login')=='admin'){ ?>
 									<div class="edit">
@@ -373,7 +383,6 @@
 			<!-- /.modal-dialog -->
 		</div>
 		<!-- /.modal delete-->
-		
 		
 	<!--/.MODAL-->
 

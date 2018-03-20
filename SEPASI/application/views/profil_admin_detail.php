@@ -181,30 +181,41 @@
 
         <div id="page-wrapper">		
                 <div class="col-lg-12">
-                    <h1 class="page-header"> Profil <?php if($status=='1') echo 'Ketua Departemen'; else echo 'Admin'; ?> </h1>
+                    <h1 class="page-header" style="margin-bottom: 0%;"> Profil <?php if($status=='1') echo 'Ketua Departemen'; else echo 'Admin'; ?> </h1>
                 </div>
                 <!-- /.col-lg-12 -->
 					<form method="POST" action="<?php echo base_url();?>index.php/Admin/simpan_profil" enctype="multipart/form-data">
 						<div class="col-lg-12">
 							<div class="panel panel-default">
-								<div class="panel-heading">
-									<p style="font-size:20px"> </p>
-								</div>
+
+								<!-- Breadcrumbs-->
+								<ol class="breadcrumb" style="margin-bottom:0%;">
+									<li class="breadcrumb-item">
+										<a href="<?php echo base_url()."index.php/Admin/profil_admin"?>">Profil Aktor</a>
+									</li>
+									<li class="breadcrumb-item active">Form Edit Aktor</li>
+								</ol>
+								<!-- Example DataTables Card-->
+
 								<div class="panel-body col-lg-8">
 									<div class="form-group hidden">
 										<label>ID</label>
 										<input class="form-control" type="number" name="id_admin" value="<?php echo $status;?>">
 									</div>
 									<div class="form-group">
-										<label>NAMA LENGKAP</label>
+										<label>NAMA LENGKAP :</label>
 										<input class="form-control" type="text" name="name" value="<?php echo $row['name'];?>" placeholder="Masukkan Nama Lengkap Dosen">
 									</div>
 									<div class="form-group">
-										<label>NIP</label>
+										<label>NIP :</label>
 										<input class="form-control" type="number" name="nip" value="<?php echo $row['nip'];?>">
 									</div>
 									<div class="form-group">
-										<label>Username</label>
+										<label>Alamat Email :</label>
+										<input class="form-control" type="text" name="email" value="<?php echo $row['email'];?>">
+									</div>
+									<div class="form-group">
+										<label>Username :</label>
 										<input class="form-control" type="text" name="username" value="<?php echo $row['username'];?>">
 									</div>
 									<div class="form-group has-feedback">
@@ -243,11 +254,11 @@
 										<?php
 											} else{
 										?>
-												<img src="<?php echo base_url().'/uploads/'.$row['id_admin'].'/'.$row['foto'];?>">	
+												<img src="<?php echo base_url().'/aktor/'.$row['status'].'/'.$row['foto'];?>">
 										<?php
 											}
 										?>										
-										<input type="file" name="foto[]">
+										<input type="file" name="foto">
 									</div>
 								</div>
 								

@@ -27,6 +27,10 @@
 			}
 
 		}
+
+		public function lupaPassword(){
+			$this->load->view('lupa_password');
+		}
 		
 		public function index(){
 			$status = $this->aktor->getStatus();
